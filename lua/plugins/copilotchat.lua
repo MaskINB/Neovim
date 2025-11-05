@@ -1,0 +1,85 @@
+return {
+  "CopilotC-Nvim/CopilotChat.nvim",
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    "nvim-telescope/telescope.nvim",
+    "zbirenbaum/copilot-cmp",
+    "hrsh7th/nvim-cmp",
+  },
+  builud = "make tiktoken",
+  opts ={
+    chat = {
+      welcome_message = "Welcome to Copilot Chat! Type /help for assistance.",
+      loading_text = "Loading...",
+      question_sign = "",
+      answer_sign = "",
+      max_line_length = 120,
+      yank_register = "+",
+      keymaps = {
+        close = { "<C-c>" },
+        scroll_up = { "<C-u>" },
+        scroll_down = { "<C-d>" },
+        toggle_settings = { "<C-o>" },
+        new_session = { "<C-n>" },
+        cycle_windows = { "<Tab>" },
+        select_session = { "<C-p>" },
+        rename_session = { "<C-r>" },
+        delete_session = { "<C-x>" },
+        draft_message = { "<C-f>" },
+        send_message = { "<C-s>" },
+        edit_last_message = { "<C-e>" },
+        yank_last_message = { "<C-y>" },
+        help = { "/help" },
+      },
+    },
+    popup_layout = {
+      default_width = 0.5,
+      default_height = 0.5,
+    },
+    settings_window_layout = {
+      width = 0.5,
+      height = 0.5,
+    },
+    sessions_window_layout = {
+      width = 0.3,
+      height = 0.8,
+    },
+    message_window_layout = {
+      width = 0.8,
+      height = 0.8,
+    },
+    openai_params = {
+      model = "gpt-4o",
+      temperature = 0,
+      top_p = 1,
+      frequency_penalty = 0,
+      presence_penalty = 0,
+      max_tokens = 1000,
+      n = 1,
+      stop = nil,
+    },
+    openai_edit_params = {
+      model = "code-davinci-edit-001",
+      temperature = 0,
+      top_p = 1,
+      frequency_penalty = 0,
+      presence_penalty = 0,
+      n = 1,
+      stop = nil,
+      instruction_prefix = "Fix the following code:\n",
+    },
+    -- openai_api_key_env_var must be set for the plugin to work
+    openai_api_key_env_var = "OPENAI_API_KEY",
+  },
+  keys ={
+   {"<leader>cc", "<cmd>CopilotChat<CR>", mode = "n", desc = "Open Copilot Chat"},
+   {"<leader>cs", "<cmd>CopilotChatSessionSelect<CR>", mode = "n", desc = "Select Copilot Chat Session"},
+   {"<leader>cn", "<cmd>CopilotChatNewSession<CR>", mode = "n", desc = "New Copilot Chat Session"},
+   {"<leader>cr", "<cmd>CopilotChatRenameSession<CR>", mode = "n", desc = "Rename Copilot Chat Session"},
+   {"<leader>cd", "<cmd>CopilotChatDeleteSession<CR>", mode = "n", desc = "Delete Copilot Chat Session"},
+   {"<leader>cf", "<cmd>CopilotChatDraftMessage<CR>", mode = "n", desc = "Draft Copilot Chat Message"},
+   {"<leader>ce", "<cmd>CopilotChatEditLastMessage<CR>", mode = "n", desc = "Edit Last Copilot Chat Message"},
+   {"<leader>cy", "<cmd>CopilotChatYankLastMessage<CR>", mode = "n", desc = "Yank Last Copilot Chat Message"},
+   {"<leader>ch", "<cmd>CopilotChatHelp<CR>", mode = "n", desc = "Copilot Chat Help"}
+  }
+}
